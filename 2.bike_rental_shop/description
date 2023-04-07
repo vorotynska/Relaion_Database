@@ -58,3 +58,74 @@ It should have printed 28 | Mountain. The message you want to print after someon
 23.Now it is formatted for the message. Take that echo command and the part that formats it, put it in a sub shell, and set the output into a variable named BIKE_INFO_FORMATTED. Here's an example: BIKE_INFO_FORMATTED=$(<formatted info here>)
 
 24 Now you can be certain there's a space at the end. Within the subshell of the last command, use a pipe and the sed command to replace the first space with no space. Here's the sed replacement pattern you want: 's/ //'
+
+25.That removed only the first space it found. Change the previous command to replace all instances of a space instead of just the first one.
+
+26.The caret you added means that's the start of the text. So it will replace a space only if it's at the beginning. Enter the last command, but add two more spaces (three total) at the beginning of the text.
+
+27.The ^  (^<space>) pattern only replaced the first space. Add * at the end of the matching pattern to replace all spaces at the beginning of text.
+
+28.The customer name only had an extra space at the beginning. Unsure as to why, but there may be others with extra spaces at the end as well. You can match the end of text with $. Change the matching pattern of the last command so it replaces a single space at the end. The pattern is  $ (<space>$)
+
+29.
+That replaced all the spaces at the end of the text. You can use | as an "or" operator in a matching pattern to replace one pattern or another. Use it to change the matching pattern so it would replace any amount of spaces at the beginning and any amount of spaces at the end of the text.
+
+30.That trimmed all spaces from the front and end of the text. Back in the last message of your script, place the CUSTOMER_NAME variable in a subshell, echo and pipe it into a sed command that removes all spaces from the front and back. Use the same method you used in the terminal.
+
+31.😉 That trimmed all spaces from the front and end of the text. Back in the last message of your script, place the CUSTOMER_NAME variable in a subshell, echo and pipe it into a sed command that removes all spaces from the front and back. Use the same method you used in the terminal.
+
+32.Delete the echo Return Menu line in the RETURN_MENU function so you can get started with that.
+
+33.Add three single line comments to the return menu function; get customer info, if not found, and send to main menu, in that order.
+
+34.Just below that, set the CUSTOMER_ID variable to a query that gets the customer ID from the database using the phone number they gave you.
+
+35.
+If they are in the database, the variable will be their customer_id. If not, it will be empty. Below the if not found comment, add an if statement that checks if it's empty. Put the send to main menu comment in the then area.
+
+36.If the customer isn't found, send them to the main menu with the message I could not find a record for that phone number.
+
+37.Add an else to the if condition for if the phone number is found in the database. Place get customer's rentals, if no rentals, and send to main menu in the else area as single line comments.
+
+38.You only need the bikes that are being rented. Use an inner join with the same two tables to only get those. Use the USING keyword again.
+
+39.That's the query you will need to use to get the bikes a customer is renting. In your script below the get customer's rentals comment. Create a CUSTOMER_RENTALS variable that gets the rentals for the customer. Use the PHONE_NUMBER variable to get them.
+
+40.The query is working. If the customer has no rentals, the variable will be empty. Below the if no rentals comment, add an if condition that checks if it's empty. Put the send to main menu comment in the then area again.
+
+41.If the customer has no rentals, send them to the main menu with the message You do not have any bikes rented. Add the code below the next comment.
+
+42.Add an else to the condition for when the customer does have rentals. Place four single line comments in it; display rented bikes, ask for bike to return, if not a number, and send to main menu.
+
+43.Below the display rented bikes comment, print Here are your rentals: with a new line in front of it.
+
+44.
+Where you print the list of rented bikes, pipe the command into a while loop that reads the data. You should read the data into BIKE_ID, BAR, TYPE, BAR, and SIZE variables. Make it print each rented bike in the same fashion as the list of available bikes.
+
+45. echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+    do
+      echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+    done
+Below the ask for bike to return comment, print Which one would you like to return? with a new line in front of it.
+Below the line you just printed, read input into a BIKE_ID_TO_RETURN variable.
+
+46.Below the if not a number comment, check if the input for the bike ID to return is a number using the same method you did earlier. Place the send to main menu comment in the statement.
+  If they don't input a number, send them to the main menu with That is not a valid bike number. as the message.
+
+  47.Add an else for when they do input a number. Place check if input is rented, if input not rented, and send to main menu single line comments in it.
+  
+  48.You need to check if the input is a bike_id rented by the customer so you can return it. In the psql prompt, join the rentals and customers tables with an INNER JOIN using the USING keyword.
+
+  49.You only need to know what bike is going to be returned. Narrow the columns from the last query to only get the one column you would need for returning a bike.
+
+  50.Back in the script, below the check if input is rented comment, create a RENTAL_ID variable that gets the rental ID of the bike that was input.
+
+  51.Below the if input not rented comment, add an if that checks if the RENTAL_ID variable is empty. Place the send to main menu comment in the then area.
+
+  52.If the input isn't rented by the given customer, send them to the main menu with You do not have that bike rented. as the message.
+
+  53.Add three single line comments in the else area; update date_returned, set bike availability to true, and send to main menu
+
+  54 After a person picks a bike to return and you know that it's a bike they have rented, you need to update all the info in the database to return it. Below the update date_returned comment, create a RETURN_BIKE_RESULT variable that sets the date_returned column to NOW() for the bike rented. Use the RENTAL_ID to figure out which row to update.
+
+  55.That should update the rentals table. Lastly, you need to make the bike available again. Below the set bike availability to true comment, create a SET_TO_TRUE_RESULT variable that makes the bike available again.
