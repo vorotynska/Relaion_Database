@@ -1,0 +1,30 @@
+1. touch castele.sh
+open file nano castele.sh
+
+2.
+The terminal is showing your file in Nano. At the bottom are the commands you can use. Your file is empty right now. Add echo hello nano at the top and press control + o to "write-out", or save, the file. You will be prompted at the bottom for a filename. Leave it as castle.sh and press enter to save the file.
+
+3. Exit Nano by pressing control + x.
+
+4.This will be a small bash script. You can run it with bash filename. Run your castle.sh file in the terminal.
+
+ Type bash castle.sh in the terminal
+
+ 5.You can "cut" text with control + k. Move the cursor to the line with your text and remove the whole line. When you are done, save the file with control + o. Note that you cannot use a mouse to move your cursor.
+
+ 6.You are going to draw a castle that you can print to the terminal. Add echo "" to your file. Put an empty line in between the two quotes like this:
+
+echo "
+
+"
+When you are done, save the file with control + o.
+
+7.You will draw the castle between the quotes. Add ground level by putting 20 underscores (_) in the row between the quotes. It should look like this:
+
+echo "
+____________________
+"
+Save the file with control + o when you are done.
+
+8.
+The ^ in front of all the commands at the bottom means to press control and the letter to run the command. Exit Nano with the Exit command.

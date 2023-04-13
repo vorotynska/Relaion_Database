@@ -4,8 +4,7 @@ If no bikes are available, you will get that message. Add an else to the if cond
 
 3. Move the echo command that prints all the available bikes below the message you just added.
 
-4. 
-Instead of directly printing the list, pipe the output into a while loop that reads each line. Here's how that looks:
+4. Instead of directly printing the list, pipe the output into a while loop that reads each line. Here's how that looks:
 
 echo "$AVAILABLE_BIKES" | while read <VAR_1> <VAR_2> <VAR_3> <VAR_4> <VAR_5>
 do
@@ -14,20 +13,17 @@ done
 It will read the first line of your AVAILABLE_BIKES variable into the five variables. Each variable being the next word in the line. Read each line into variables, BIKE_ID BAR TYPE BAR SIZE. In the <STATEMENTS> area, use echo to print the BIKE_ID, TYPE, and SIZE variables, in that order.
 5. It's working 😄 Adjust the echo command that prints the bike info so that the first line printed would look like this: 1) 27" Mountain Bike. The rest would look the same, but with their bike info. Make sure to escape any characters you need to.
 
-6.
-Next, you want to find out how to test if the user input is a number. In the terminal, enter [[ a =~ [0-9] ]]; echo $? to see if a is a number. The conditional expression will run, and echo $? will print the exit code of it (the last command).
+6.Next, you want to find out how to test if the user input is a number. In the terminal, enter [[ a =~ [0-9] ]]; echo $? to see if a is a number. The conditional expression will run, and echo $? will print the exit code of it (the last command).
 
 7.t printed 1 for false. Meaning that a did not match the pattern [0-9], or a did not contain a number from 0-9. Enter the same commands, but check if a1 matches the pattern.
 
-8.
-That printed 0 for true. a1 does contain a number from 0-9. Enter the same command, but change the pattern to ^[0-9]$. The ^ signifies the start of the pattern, and $ means the end. So the input will have to start, contain a number 0-9, and end.
+8.That printed 0 for true. a1 does contain a number from 0-9. Enter the same command, but change the pattern to ^[0-9]$. The ^ signifies the start of the pattern, and $ means the end. So the input will have to start, contain a number 0-9, and end.
 
 9.Back in your script, below the if input is not a number comment, add an if condition that checks if the input is not a number using the method you just practiced. Add the send to main menu comment in the then area of the if.
 
 10.Below the get bike availability comment you just added, create a BIKE_AVAILABILITY variable. Set it equal to a query that gets the available column from the bikes table for the input. Also, make sure to only get the row if it is available.
 
-11.
-The variable will be t or empty. Below the if not available comment, add an if condition that checks if it's empty. Put the send to main menu comment in it's statements area.
+11.The variable will be t or empty. Below the if not available comment, add an if condition that checks if it's empty. Put the send to main menu comment in it's statements area.
 
 12.In your script, add an else for when a bike is available. Add these four comments in the else area get customer info, if customer doesn't exist, get new customer name, and insert new customer.
 
@@ -37,19 +33,15 @@ The variable will be t or empty. Below the if not available comment, add an if c
 
 15.If the customer is in the database with the phone number used, the variable will be set to the name. If not, it will be empty. Add an if condition below the if customer doesn't exist comment that checks if the variable is empty. Place the next two comments in the then area.
 
-16.
-If the customer isn't in the database, you need to get their name so you can add them. Below the get new customer name comment, print What's your name? with a new line in front of the message.
+16.If the customer isn't in the database, you need to get their name so you can add them. Below the get new customer name comment, print What's your name? with a new line in front of the message.
 
 17.You have the two pieces of information you need. Below the insert new customer comment, create an INSERT_CUSTOMER_RESULT variable that inserts the customer into the database.
 
-18.
-And set the available column to false for the bike rented. Below the end of the if statement that inserts a new customer, add five more comments; get customer_id, insert bike rental, set bike availability to false, get bike info, and send to main menu
+18.And set the available column to false for the bike rented. Below the end of the if statement that inserts a new customer, add five more comments; get customer_id, insert bike rental, set bike availability to false, get bike info, and send to main menu
 
-19. 
-The available column was set to false for the bike you rented. The last thing to do is give a nice message about the rental. Below the get bike info comment, create a BIKE_INFO variable that gets the size and type, in that order, of the bike rented.
+19. The available column was set to false for the bike you rented. The last thing to do is give a nice message about the rental. Below the get bike info comment, create a BIKE_INFO variable that gets the size and type, in that order, of the bike rented.
 
-20. 
-It should have printed 28 | Mountain. The message you want to print after someone rents a bike would have said I have put you down for the 28" Mountain Bike, Me.. You need to format that variable for the message. The sed command can be used to replace characters and patterns in text. It looks like this: sed s/<regex_pattern_to_replace>/<characters_to_replace_with>/<regex_flags>. In the terminal, enter echo '28 | Mountain' | sed 's/ /=/g' to practice.
+20. It should have printed 28 | Mountain. The message you want to print after someone rents a bike would have said I have put you down for the 28" Mountain Bike, Me.. You need to format that variable for the message. The sed command can be used to replace characters and patterns in text. It looks like this: sed s/<regex_pattern_to_replace>/<characters_to_replace_with>/<regex_flags>. In the terminal, enter echo '28 | Mountain' | sed 's/ /=/g' to practice.
 
 21. The g regex flag stands for "global". It will replace all instance of the pattern. In this case, it replaced all the spaces.
 
@@ -67,8 +59,7 @@ It should have printed 28 | Mountain. The message you want to print after someon
 
 28.The customer name only had an extra space at the beginning. Unsure as to why, but there may be others with extra spaces at the end as well. You can match the end of text with $. Change the matching pattern of the last command so it replaces a single space at the end. The pattern is  $ (<space>$)
 
-29.
-That replaced all the spaces at the end of the text. You can use | as an "or" operator in a matching pattern to replace one pattern or another. Use it to change the matching pattern so it would replace any amount of spaces at the beginning and any amount of spaces at the end of the text.
+29.That replaced all the spaces at the end of the text. You can use | as an "or" operator in a matching pattern to replace one pattern or another. Use it to change the matching pattern so it would replace any amount of spaces at the beginning and any amount of spaces at the end of the text.
 
 30.That trimmed all spaces from the front and end of the text. Back in the last message of your script, place the CUSTOMER_NAME variable in a subshell, echo and pipe it into a sed command that removes all spaces from the front and back. Use the same method you used in the terminal.
 
@@ -80,8 +71,7 @@ That replaced all the spaces at the end of the text. You can use | as an "or" op
 
 34.Just below that, set the CUSTOMER_ID variable to a query that gets the customer ID from the database using the phone number they gave you.
 
-35.
-If they are in the database, the variable will be their customer_id. If not, it will be empty. Below the if not found comment, add an if statement that checks if it's empty. Put the send to main menu comment in the then area.
+35.If they are in the database, the variable will be their customer_id. If not, it will be empty. Below the if not found comment, add an if statement that checks if it's empty. Put the send to main menu comment in the then area.
 
 36.If the customer isn't found, send them to the main menu with the message I could not find a record for that phone number.
 
@@ -99,8 +89,7 @@ If they are in the database, the variable will be their customer_id. If not, it 
 
 43.Below the display rented bikes comment, print Here are your rentals: with a new line in front of it.
 
-44.
-Where you print the list of rented bikes, pipe the command into a while loop that reads the data. You should read the data into BIKE_ID, BAR, TYPE, BAR, and SIZE variables. Make it print each rented bike in the same fashion as the list of available bikes.
+44.Where you print the list of rented bikes, pipe the command into a while loop that reads the data. You should read the data into BIKE_ID, BAR, TYPE, BAR, and SIZE variables. Make it print each rented bike in the same fashion as the list of available bikes.
 
 45. echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
     do
