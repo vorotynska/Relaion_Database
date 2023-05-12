@@ -1,0 +1,57 @@
+1. 
+
+# Ініціалізуйте репозиторій, введіть ім’я, адресу електронної пошти до файлу .config 
+
+echo -e "\n\n******** СТВОРЕННЯ РЕПОЗИТОРІЮ ТА КОНФІГУРАЦІЯ\n\n" 
+
+rm -rf git-test ; mkdir git-test ; cd git-test 
+git init 
+git config user.name "A Smart Guy" 
+git config user.email "asmartguy@linux.com" 
+
+echo -e "\n\n******** CТВОРЕННЯ КІЛЬКОХ ФАЙЛІВ ТА ДОДАВАННЯ ЇХ ДО ПРОЄКТУ, ПОТІМ КОММІТ\n\
+
+echo file1 > file1 
+echo file2 > file2 
+git add file1 file2 
+git commit . -s -m "Це перший комміт" 
+
+2. 
+
+echo -e "\n\n************ СТВОРЕННЯ НОВОГО КЛОНА\n\n" 
+
+cd .. 
+git clone git-test git-newer 
+
+3. 
+
+echo -e "\n\n************ ВНЕСЕННЯ ЗМІН ДО РЕПОЗИТОРІЮ*\n\n" 
+
+cd git-newer 
+
+echo another line >> file2 
+echo a third file > file3 
+
+echo -e "\n\n************ ДОДАВАННЯ ТА КОММІТ ЗМІН\n\n" 
+
+git add file2 file3 
+git commit -s -m "модифікації з нового клона" 
+
+4. 
+
+echo -e "\n\n************ СТВОРЕННЯ ПАТЧА*\n\n" 
+
+git format-patch -1 -s 
+mv 00* .. 
+
+5. 
+
+echo -e "\n\n************ ПЕРЕВІРКА, ЧИ ПРАЦЮЄ ПАТЧ\n\n" 
+
+cd .. 
+cd git-test 
+git apply --check ../00* 
+
+echo -e "\n\n************* ЗАСТОСУВАННЯ ПАТЧА\n\n" 
+
+git am ../00* 
